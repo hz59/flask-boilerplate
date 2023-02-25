@@ -1,6 +1,6 @@
 # Flask Application boilerplate 🍜
 Author: hz59 <br>
-email: soon
+email: hz59.dev@gmail.com
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ Make sure you have Docker and docker-compose installed:
 
 ```
 docker --version
-docker-composer --version
+docker-compose --version
 ```
 Docker intallation: https://docs.docker.com/desktop/install/linux-install/ <br>
 docker-compose intallation: https://docs.docker.com/compose/install/linux/
