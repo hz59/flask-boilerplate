@@ -13,7 +13,7 @@ python3 -m venv venv
 source venv/bin/activate
 
 # install flask and other required packages
-pip install flask
+pip install Flask gunicorn
 
 # create a flask app file
 echo 'from flask import Flask
@@ -30,16 +30,16 @@ echo 'FROM python:3.9-slim-buster
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
-
 COPY . .
 
-CMD ["python3", "app.py"]
+RUN pip install -r requirements.txt
+
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
 ' > Dockerfile
 
 # create a requirements file for the flask app
 echo 'Flask
+gunicorn
 ' > requirements.txt
 
 # create a docker-compose file
@@ -51,5 +51,8 @@ services:
       - "5000:5000"
 ' > docker-compose.yml
 
-# start the flask app using docker-compose 
-docker-compose up -d 
+# start the containers
+docker-compose up -d
+
+# print container status
+docker-compose ps
